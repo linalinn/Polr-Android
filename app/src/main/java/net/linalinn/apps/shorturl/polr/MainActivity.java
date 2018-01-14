@@ -1,6 +1,7 @@
 package net.linalinn.apps.shorturl.polr;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -81,10 +82,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
 
-        } else if (R.id.button_sahre == v.getId()) {
+        } else if (R.id.button_sahre == v.getId() && (shorturl_TextView.getText().toString() != "Short URL")){
 
-            //ToDo
-
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, shorturl_TextView.getText().toString());
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+            
         } else if (R.id.button_API == v.getId()) {
 
             getApplicationContext().getSharedPreferences(getString(R.string.api_key), Context.MODE_PRIVATE).edit().putString("api",apikey_EditText.getText().toString()).apply();

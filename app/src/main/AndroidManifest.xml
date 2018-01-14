@@ -31,7 +31,9 @@
         </activity>
         <activity
             android:name="net.linalinn.apps.shorturl.polr.CostumShortedActivity"
-            android:label="CostumShortURL">
+            android:label="CostumShortURL"
+            android:icon="@mipmap/ic_costumshare"
+            android:roundIcon="@mipmap/ic_costumshare_round">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 

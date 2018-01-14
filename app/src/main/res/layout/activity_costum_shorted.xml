@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.linalinn.apps.shorturl.polr.MainActivity">
+
+    <EditText
+        android:id="@+id/URL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/RURL"
+        app:layout_constraintStart_toStartOf="@+id/RURL"
+        tools:text="https://exsample.com" />
+
+    <EditText
+        android:id="@+id/RURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="ShortURL(Optional)"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/button_short"
+        app:layout_constraintEnd_toEndOf="@+id/button_short"
+        app:layout_constraintStart_toStartOf="@+id/button_short"
+        tools:text="ShortURL(Optional)" />
+
+    <Button
+        android:id="@+id/button_short"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="96dp"
+        android:text="Short!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_settings" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="78dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/shorturl"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:minWidth="148dp"
+                android:text="Short URL"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+                app:layout_constraintBottom_toBottomOf="@+id/button_sahre"
+                app:layout_constraintEnd_toStartOf="@+id/button_sahre"
+                app:layout_constraintTop_toTopOf="@+id/button_sahre"
+                app:layout_constraintVertical_bias="0.555"
+                app:layout_constraintWidth_max="158dp" />
+
+            <ImageButton
+                android:id="@+id/button_sahre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="?attr/actionModeShareDrawable" />
+        </android.support.constraint.ConstraintLayout>
+
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/button_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_settings_black_24dp" />
+
+</android.support.constraint.ConstraintLayout>

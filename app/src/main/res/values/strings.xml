@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Polr</string>
+    <string name="api_key">net.linalinn.apps.shorturl.polr.api_key</string>
+</resources>

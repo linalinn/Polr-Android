@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,15 @@ public class ShortedActivity extends AppCompatActivity implements View.OnClickLi
 
             if (apikey != "api34c" || apiserver != "api34c"){
 
-                shorturl_TextView.setText(Polrapi.shortUrl(apiserver, apikey, sharedText));
+                try {
+                    shorturl_TextView.setText(Polrapi.shortUrl(apiserver, apikey, sharedText));
+                } catch (Exception e) {
+                    Log.e("NET",e.getMessage());
+                    if(e.getMessage() == "malformed URL"){
+                        shorturl_TextView.setText("Malformed URL");
+                    }
+                    e.printStackTrace();
+                }
 
             } else {
 

@@ -115,23 +115,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Log.d("NETWORK",RURL_EditText.getText().toString());
 
-                if (RURL_EditText.getText().toString() != ""){
+                if (RURL_EditText.getText().toString().length() != 0){
 
                     try {
 
-                        shorturl_TextView.setText(Polrapi.shortUrl(apiserver,apikey, URL_EditText.getText().toString(), RURL_EditText.getText().toString()));
+                        if (!Polrapi.isUsed(apiserver,apikey,RURL_EditText.getText().toString())) {
+                            shorturl_TextView.setText(Polrapi.shortUrl(apiserver, apikey, URL_EditText.getText().toString(), RURL_EditText.getText().toString()));
+                        } else {
+                            shorturl_TextView.setText("Sorry, but this URL ending is already in use.");
+                        }
 
                     } catch (Exception e) {
 
                         e.printStackTrace();
-                        Log.e("NETWORK",e.toString());
-                        shorturl_TextView.setText("Sorry, but this URL ending is already in use.");
+                        Log.e("NETWORKMain",e.toString());
+                        if(e.getMessage() == "malformed URL"){
+                            shorturl_TextView.setText("Malformed URL");
+                        }
 
                     }
 
                 } else {
 
-                    shorturl_TextView.setText(Polrapi.shortUrl(apiserver,apikey,URL_EditText.getText().toString()));
+                    try {
+                        shorturl_TextView.setText(Polrapi.shortUrl(apiserver,apikey,URL_EditText.getText().toString()));
+                    } catch (Exception e) {
+                        if(e.getMessage() == "malformed URL"){
+                            shorturl_TextView.setText("Malformed URL");
+                        }
+                        e.printStackTrace();
+                    }
 
                 }
 

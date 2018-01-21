@@ -15,9 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CostumShortedActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button short_button;
+    private Button      short_button;
     private ImageButton share_button;
-    private TextView shorturl_TextView;
+    private TextView    shorturl_TextView;
     private EditText    URL_EditText;
     private EditText    RURL_EditText;
 
@@ -47,21 +47,31 @@ public class CostumShortedActivity extends AppCompatActivity implements View.OnC
         }
 
     }
+    @Override
+    public void onStop(){
+        super.onStop();  // Always call the superclass method first
+        super.finish();
+    }
+
 
 
     @Override
     public void onClick(View v) {
 
-        if (R.id.button_short == v.getId() && RURL_EditText.getText().toString() != ""){
+        if (R.id.button_short == v.getId() && RURL_EditText.getText().toString().length() != 0){
 
             SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.api_key), Context.MODE_PRIVATE);
             String apikey = sharedPref.getString("api", "api34c");
             String apiserver = sharedPref.getString("apiserver", "api34c");
+            String CostumEnding = RURL_EditText.getText().toString();
             try {
 
-                if (apikey != "api34c" || apiserver != "api34c"){
-
-                    shorturl_TextView.setText(Polrapi.shortUrl(apiserver,apikey, URL_EditText.getText().toString(), RURL_EditText.getText().toString()));
+                if (apikey != "api34c" && apiserver != "api34c"){
+                    if (!Polrapi.isUsed(apiserver,apikey,CostumEnding)) {
+                        shorturl_TextView.setText(Polrapi.shortUrl(apiserver, apikey, URL_EditText.getText().toString(), CostumEnding));
+                    } else {
+                        shorturl_TextView.setText("Sorry, but this URL ending is already in use.");
+                    }
 
                 } else {
 
@@ -75,13 +85,17 @@ public class CostumShortedActivity extends AppCompatActivity implements View.OnC
                 }
 
             } catch (Exception e) {
-
+                if (e.getMessage() == "malformed URL"){
+                    shorturl_TextView.setText("Malformed URL");
+                }
                 e.printStackTrace();
                 Log.e("NETWORK",e.toString());
-                shorturl_TextView.setText("Sorry, but this URL ending is already in use.");
+                shorturl_TextView.setText("Network Error");
 
             }
 
+        } else {
+            Toast.makeText(getApplicationContext(),"Set a ShortURL",Toast.LENGTH_LONG).show();
         }
 
         if (R.id.button_sahre == v.getId() && (shorturl_TextView.getText().toString() != "Short URL")){

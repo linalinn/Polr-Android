@@ -23,12 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:ems="10"
-        android:hint="ShortURL(Optional)"
+        android:hint="ShortURL"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/button_short"
         app:layout_constraintEnd_toEndOf="@+id/button_short"
         app:layout_constraintStart_toStartOf="@+id/button_short"
-        tools:text="ShortURL(Optional)" />
+        tools:text="ShortURL" />
 
     <Button
         android:id="@+id/button_short"
